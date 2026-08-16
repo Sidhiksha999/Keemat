@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keemat - Buyer Bidding & Landed Cost Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#FAF9F5',
+            brandBorder: '#E2E2DC',
+            brandDark: '#1A1A18',
+            brandNavy: '#1E3A8A',
+            brandNavyHover: '#162B66',
+            brandGreen: '#1B4D3E',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brandBg text-brandDark font-sans antialiased min-h-screen pb-12">
+
+  <!-- 1. Top Navigation Bar -->
+  <header class="w-full bg-white border-b border-brandBorder px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <span class="text-2xl font-black tracking-tight text-brandDark">KEEMAT</span>
+      <span class="bg-brandNavy text-white text-xs font-semibold px-2.5 py-0.5 rounded">Buyer Dashboard</span>
+    </div>
+
+    <nav class="hidden md:flex space-x-6 text-sm font-medium">
+      <a href="#" class="text-brandNavy border-b-2 border-brandNavy pb-1 font-semibold">Live Auctions</a>
+      <a href="#" class="text-gray-600 hover:text-brandDark">My Procurement</a>
+      <a href="#" class="text-gray-600 hover:text-brandDark">Fulfilled Orders</a>
+      <a href="#" class="text-gray-600 hover:text-brandDark">Payment Center</a>
+    </nav>
+
+    <div class="flex items-center space-x-4 text-xs font-medium">
+      <span class="text-gray-600 border border-brandBorder bg-brandBg px-2 py-1 rounded">English | हिंदी</span>
+      <div class="flex items-center space-x-2 border border-brandBorder px-3 py-1 rounded bg-white">
+        <span class="w-2 h-2 rounded-full bg-green-600"></span>
+        <span class="font-bold text-brandDark">Arjun Patel</span>
+        <span class="text-gray-500">(Verified Trader)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Auction Header Bar -->
+  <div class="max-w-7xl mx-auto px-6 mt-6">
+    <div class="bg-white border border-brandBorder rounded-md p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center space-x-3">
+          <h1 class="text-xl font-bold text-brandDark">Lot #KM-8802</h1>
+          <span class="bg-blue-100 text-brandNavy border border-blue-300 text-xs font-bold px-2.5 py-0.5 rounded">
+            Wheat (Sharbati) • 10 Tonnes (100 qtl)
+          </span>
+        </div>
+        <p class="text-xs text-gray-600 mt-1">Grade A Quality • Moisture: 11.5% • Location: Sehore, MP</p>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <div class="text-right text-xs">
+          <span class="text-gray-500 block">Auction Status</span>
+          <span class="font-bold text-red-600 flex items-center justify-end">
+            <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse mr-1"></span> 🔴 HIGH ACTIVITY
+          </span>
+        </div>
+        <div class="bg-amber-100 border border-amber-400 px-4 py-2 rounded text-amber-900 font-extrabold text-lg">
+          ⏱ 02:45 remaining
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Main Workspace Grid (50/50 Split Canvas) -->
+  <main class="max-w-7xl mx-auto px-6 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- LEFT PANEL: Live Bid Ladder & Auto-Bidding -->
+    <section class="bg-white border border-brandBorder rounded-md p-5 flex flex-col justify-between">
+      <div>
+        <h2 class="text-base font-bold text-brandDark border-b border-brandBorder pb-3 mb-4">
+          Live Auction Room & Bid History
+        </h2>
+
+        <!-- Auto-Bidding Control Box -->
+        <div class="bg-brandBg border border-brandBorder rounded p-4 mb-5">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-brandDark">Set Max Auto-Bid Ceiling</h3>
+            <span class="text-[10px] text-gray-500">Automated incremental bidding</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <input type="text" value="₹2,450 / qtl" class="bg-white border border-brandBorder rounded px-3 py-1.5 text-xs font-bold text-brandDark focus:outline-none">
+            <select class="bg-white border border-brandBorder rounded px-2 py-1.5 text-xs text-brandDark font-medium">
+              <option>+₹10 / qtl step</option>
+              <option>+₹20 / qtl step</option>
+            </select>
+            <button class="bg-brandNavy hover:bg-brandNavyHover text-white font-bold py-1.5 px-3 rounded text-xs transition">
+              Enable Auto-Bid
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Bid Ladder -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-brandBg border-y border-brandBorder text-gray-600 font-semibold uppercase tracking-wider">
+                <th class="py-2.5 px-3">Time</th>
+                <th class="py-2.5 px-3">Bidder ID</th>
+                <th class="py-2.5 px-3">Qty</th>
+                <th class="py-2.5 px-3 text-right">Bid / Quintal</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brandBorder">
+              <tr class="bg-green-50/60 font-bold">
+                <td class="py-2.5 px-3 text-gray-500">12:40:12 AM</td>
+                <td class="py-2.5 px-3 text-green-900">You (Arjun Patel) <span class="text-[10px] bg-green-200 text-green-800 px-1.5 py-0.2 rounded ml-1">Highest</span></td>
+                <td class="py-2.5 px-3">100 qtl</td>
+                <td class="py-2.5 px-3 text-right text-green-900">₹2,380 / qtl</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-gray-500">12:39:55 AM</td>
+                <td class="py-2.5 px-3 text-brandDark">Trader #TR-402</td>
+                <td class="py-2.5 px-3">100 qtl</td>
+                <td class="py-2.5 px-3 text-right text-brandDark">₹2,370 / qtl</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-gray-500">12:39:10 AM</td>
+                <td class="py-2.5 px-3 text-brandDark">Trader #TR-881</td>
+                <td class="py-2.5 px-3">100 qtl</td>
+                <td class="py-2.5 px-3 text-right text-brandDark">₹2,360 / qtl</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 text-gray-500">12:38:45 AM</td>
+                <td class="py-2.5 px-3 text-gray-600">You (Arjun Patel)</td>
+                <td class="py-2.5 px-3">100 qtl</td>
+                <td class="py-2.5 px-3 text-right text-gray-600">₹2,350 / qtl</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-brandBorder text-[11px] text-gray-500 text-center">
+        ⚡ Bids are refreshed in real-time over secure websockets.
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: Landed Cost Calculator & Action -->
+    <section class="bg-white border border-brandBorder rounded-md p-5 flex flex-col justify-between">
+      <div>
+        <h2 class="text-base font-bold text-brandDark border-b border-brandBorder pb-3 mb-4">
+          Landed Cost Calculator & Escrow Lock
+        </h2>
+
+        <!-- Bid Input Adjuster -->
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-gray-600 mb-1">Your Proposed Bid Amount (Per Quintal):</label>
+          <div class="flex space-x-2">
+            <input type="text" value="₹2,380" class="w-full bg-brandBg border border-brandBorder rounded px-3 py-2 font-black text-lg text-brandNavy focus:outline-none">
+            <button class="bg-brandBg border border-brandBorder px-3 font-bold hover:bg-gray-100 rounded text-xs">-10</button>
+            <button class="bg-brandBg border border-brandBorder px-3 font-bold hover:bg-gray-100 rounded text-xs">+10</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Cost Breakdown Table -->
+        <div class="bg-brandBg border border-brandBorder rounded p-4 space-y-2 text-xs mb-4">
+          <div class="flex justify-between py-1 border-b border-dashed border-gray-200">
+            <span class="text-gray-600">Your Bid Amount:</span>
+            <span class="font-bold text-brandDark">₹2,380 / qtl <span class="text-gray-500 font-normal">(₹2,38,000)</span></span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-dashed border-gray-200">
+            <span class="text-gray-600">Estimated Transport & Freight:</span>
+            <span class="font-bold text-brandDark">+₹120 / qtl <span class="text-gray-500 font-normal">(+₹12,000)</span></span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-dashed border-gray-200">
+            <span class="text-gray-600">Mandi Tax / Cess (MP State):</span>
+            <span class="font-bold text-brandDark">+₹25 / qtl <span class="text-gray-500 font-normal">(+₹2,500)</span></span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-dashed border-gray-200">
+            <span class="text-gray-600">Escrow & Platform Fee:</span>
+            <span class="font-bold text-brandDark">+₹15 / qtl <span class="text-gray-500 font-normal">(+₹1,500)</span></span>
+          </div>
+
+          <!-- Total Landed Result Box -->
+          <div class="bg-white border border-brandNavy p-3 rounded mt-3">
+            <div class="text-[10px] font-bold text-brandNavy uppercase tracking-wider">TOTAL LANDED COST AT WAREHOUSE</div>
+            <div class="text-2xl font-black text-brandNavy mt-0.5">₹2,540 / Quintal</div>
+            <div class="text-xs text-gray-600 mt-0.5">Total Outflow for 10 Tonnes: <strong class="text-brandDark">₹2,54,000</strong></div>
+          </div>
+        </div>
+
+        <!-- Escrow Protection Guarantee Micro-copy -->
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded text-xs text-blue-900 leading-relaxed">
+          <strong>🔒 Escrow Safety Guarantee:</strong> Your <strong>₹23,800 deposit (10%)</strong> is held safely in escrow. It is only transferred to the seller upon your physical acceptance of the delivery at your warehouse.
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="mt-6">
+        <button class="w-full bg-brandNavy hover:bg-brandNavyHover text-white font-extrabold py-3.5 rounded text-sm transition shadow-sm">
+          Lock 10% Deposit (₹23,800) & Place Bid →
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

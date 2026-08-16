@@ -1,0 +1,10 @@
+{
+  "description": "Connects farmers and buyers in a trusted marketplace offering real-time profit tools, AI crop grading, live bidding, and secure escrow protection.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

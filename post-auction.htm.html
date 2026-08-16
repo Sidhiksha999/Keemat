@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keemat - Post-Auction Logistics & Delivery Verification</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBg: '#FAF9F5',
+            brandBorder: '#E2E2DC',
+            brandDark: '#1A1A18',
+            brandNavy: '#1E3A8A',
+            brandNavyHover: '#162B66',
+            brandGreen: '#1B4D3E',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brandBg text-brandDark font-sans antialiased min-h-screen pb-12">
+
+  <!-- 1. Top Navigation Bar -->
+  <header class="w-full bg-white border-b border-brandBorder px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <span class="text-2xl font-black tracking-tight text-brandDark">KEEMAT</span>
+      <span class="bg-brandNavy text-white text-xs font-semibold px-2.5 py-0.5 rounded">Buyer Dashboard</span>
+    </div>
+
+    <nav class="hidden md:flex space-x-6 text-sm font-medium">
+      <a href="#" class="text-gray-600 hover:text-brandDark">Live Auctions</a>
+      <a href="#" class="text-brandNavy border-b-2 border-brandNavy pb-1 font-semibold">My Procurement</a>
+      <a href="#" class="text-gray-600 hover:text-brandDark">Fulfilled Orders</a>
+      <a href="#" class="text-gray-600 hover:text-brandDark">Payment Center</a>
+    </nav>
+
+    <div class="flex items-center space-x-4 text-xs font-medium">
+      <span class="text-gray-600 border border-brandBorder bg-brandBg px-2 py-1 rounded">English | हिंदी</span>
+      <div class="flex items-center space-x-2 border border-brandBorder px-3 py-1 rounded bg-white">
+        <span class="w-2 h-2 rounded-full bg-green-600"></span>
+        <span class="font-bold text-brandDark">Arjun Patel</span>
+        <span class="text-gray-500">(Verified Trader)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Order Summary Header Bar -->
+  <div class="max-w-7xl mx-auto px-6 mt-6">
+    <div class="bg-white border border-brandBorder rounded-md p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center space-x-3">
+          <h1 class="text-xl font-bold text-brandDark">Order #ORD-8802</h1>
+          <span class="bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold px-2.5 py-0.5 rounded flex items-center">
+            <span class="w-2 h-2 rounded-full bg-amber-600 animate-pulse mr-1.5"></span> IN TRANSIT • ARRIVING IN 45 MINS
+          </span>
+        </div>
+        <p class="text-xs text-gray-600 mt-1">10 Tonnes Wheat (Sharbati) • Escrow Balance Held: <strong class="text-brandDark">₹2,46,100</strong></p>
+      </div>
+
+      <div class="flex items-center space-x-6 text-xs">
+        <div class="border-l border-brandBorder pl-4">
+          <span class="text-gray-500 block">Transport Vehicle</span>
+          <span class="font-bold text-brandDark">MP-04-HE-9821 <span class="text-gray-500 font-normal">(10-Ton Eicher)</span></span>
+        </div>
+        <div class="border-l border-brandBorder pl-4">
+          <span class="text-gray-500 block">Driver Contact</span>
+          <span class="font-bold text-brandDark">Ramesh Singh <span class="text-brandNavy font-normal">(+91 98260-XXXXX)</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Main Workspace Grid (50/50 Split Canvas) -->
+  <main class="max-w-7xl mx-auto px-6 mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- LEFT PANEL: Live GPS Tracker & Dispatch Timeline -->
+    <section class="bg-white border border-brandBorder rounded-md p-5 flex flex-col justify-between">
+      <div>
+        <h2 class="text-base font-bold text-brandDark border-b border-brandBorder pb-3 mb-4">
+          Live Vehicle GPS Tracker & Dispatch Timeline
+        </h2>
+
+        <!-- Interactive Map Container -->
+        <div class="relative w-full h-56 bg-amber-50/30 border border-brandBorder rounded-md overflow-hidden mb-5 flex items-center justify-center">
+          <div class="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:16px_16px]"></div>
+          
+          <!-- Mock Route Graphics -->
+          <div class="relative z-10 w-3/4 flex items-center justify-between">
+            <div class="text-center">
+              <span class="w-4 h-4 bg-gray-800 rounded-full inline-block border-2 border-white"></span>
+              <span class="block text-[10px] font-bold text-gray-700 mt-1">Sehore Farm</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-brandNavy relative mx-2">
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brandNavy text-white text-[9px] font-bold px-2 py-0.5 rounded shadow">
+                🚚 38 km remaining (42 km/h)
+              </div>
+            </div>
+            <div class="text-center">
+              <span class="w-4 h-4 bg-brandNavy rounded-full inline-block border-2 border-white"></span>
+              <span class="block text-[10px] font-bold text-brandNavy mt-1">Indore Warehouse</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone Logistics Checklist -->
+        <div class="space-y-3 text-xs">
+          <div class="flex items-start space-x-3">
+            <span class="w-5 h-5 rounded-full bg-green-100 text-green-800 border border-green-300 font-bold flex items-center justify-center text-[10px] shrink-0">✓</span>
+            <div>
+              <p class="font-bold text-brandDark">Step 1: Farm Gate Dispatch & Weighbridge Verification</p>
+              <p class="text-gray-500 text-[11px]">Completed at Sehore Mandi • Dispatched 08:30 AM</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 border border-amber-400 font-bold flex items-center justify-center text-[10px] shrink-0">2</span>
+            <div>
+              <p class="font-bold text-brandDark">Step 2: Transit In-Progress via NH-46</p>
+              <p class="text-amber-800 text-[11px] font-semibold">Active • ETA: 01:30 PM (On Time)</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3 opacity-50">
+            <span class="w-5 h-5 rounded-full bg-gray-100 text-gray-600 border border-gray-300 font-bold flex items-center justify-center text-[10px] shrink-0">3</span>
+            <div>
+              <p class="font-bold text-brandDark">Step 3: Gate Entry & Arrival Quality Verification</p>
+              <p class="text-gray-500 text-[11px]">Pending Arrival at Indore Facility</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-3 opacity-50">
+            <span class="w-5 h-5 rounded-full bg-gray-100 text-gray-600 border border-gray-300 font-bold flex items-center justify-center text-[10px] shrink-0">4</span>
+            <div>
+              <p class="font-bold text-brandDark">Step 4: Final Escrow Settlement & Gate Pass Generation</p>
+              <p class="text-gray-500 text-[11px]">Awaiting Quality Confirmation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-brandBorder text-[11px] text-gray-500 flex justify-between">
+        <span>Telemetry Updated 1 min ago</span>
+        <span>GPS Hardware ID: #GPS-9921</span>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: Quality Verification & Escrow Release Workflow -->
+    <section class="bg-white border border-brandBorder rounded-md p-5 flex flex-col justify-between">
+      <div>
+        <h2 class="text-base font-bold text-brandDark border-b border-brandBorder pb-3 mb-4">
+          Arrival Inspection & Escrow Settlement
+        </h2>
+
+        <!-- Step-by-Step Arrival Instructions -->
+        <div class="bg-brandBg border border-brandBorder rounded p-4 mb-5 text-xs space-y-2">
+          <p class="font-bold text-brandDark">Arrival Protocol for Warehouse Supervisor:</p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>Verify gross vehicle weight on arrival weighbridge slip (Target: 10.00 Tonnes).</li>
+            <li>Take physical grain sample and verify against original Dossier (Grade A • 11.5% Moisture).</li>
+          </ul>
+        </div>
+
+        <!-- Dual Confirmation Actions -->
+        <div class="space-y-4">
+          
+          <!-- Option A: Release Escrow -->
+          <div class="border border-green-300 bg-green-50/50 rounded p-4">
+            <button class="w-full bg-brandNavy hover:bg-brandNavyHover text-white font-bold py-3 rounded text-xs transition">
+              Confirm Quality & Release Escrow Payment
+            </button>
+            <p class="text-[11px] text-gray-600 mt-2 text-center">
+              ⚡ Instantly transfers <strong>₹2,46,100</strong> from escrow to seller account and issues final gate pass.
+            </p>
+          </div>
+
+          <!-- Option B: File Quality Dispute -->
+          <div class="border border-red-200 bg-red-50/30 rounded p-4">
+            <button class="w-full border border-red-700 text-red-800 hover:bg-red-50 font-bold py-2.5 rounded text-xs transition">
+              Dispute Grade / File Quality Deviation
+            </button>
+            <p class="text-[11px] text-gray-600 mt-2 text-center">
+              ⚠️ Freezes escrow funds immediately. Routes case to an independent on-ground mandi assayer within 24 hours.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer Security Note -->
+      <div class="mt-6 pt-3 border-t border-brandBorder text-[11px] text-gray-500 text-center">
+        🔒 Payment is protected under Keemat Escrow Policy 2026.
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

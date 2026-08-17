@@ -2,7 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://your-keemat-backend.onrender.com/api/:path*"
+      "destination": "https://keemat.onrender.com/api/:path*"
+    },
+    {
+      "source": "/socket.io/:path*",
+      "destination": "https://keemat.onrender.com/socket.io/:path*"
     },
     {
       "source": "/(.*)",
